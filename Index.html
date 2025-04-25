@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>System Boot</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #33ff33;
+      font-family: monospace;
+      font-size: 16px;
+    }
+    #terminal {
+      padding: 20px;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    #output {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <pre id="output"></pre>
+  </div>
+  <script>
+    const output = document.getElementById('output');
+
+    const fakeCommands = [
+      "Initializing kernel...",
+      "Bootloader verified...",
+      "Establishing secure link...",
+      "Bypassing admin rights...",
+      "Collecting system info...",
+      "Spawning background processes...",
+      "Injecting script into memory...",
+      "Opening port 666...",
+      "Disabling antivirus...",
+      "Downloading ransomware package...",
+      "Writing payload to disk...",
+      "Finalizing changes...",
+      "Compiling virus core...",
+      "Setting persistence...",
+      "Encrypting local files...",
+      "Connecting to dark net...",
+      "Data siphoning complete.",
+      "Activating backdoor...",
+      "Final check complete.",
+      "Running payload..."
+    ];
+
+    const loadingBar = [
+      "[#---------]",
+      "[##--------]",
+      "[###-------]",
+      "[####------]",
+      "[#####-----]",
+      "[######----]",
+      "[#######---]",
+      "[########--]",
+      "[#########-]",
+      "[##########]"
+    ];
+
+    let index = 0;
+
+    function typeNext() {
+      if (index < fakeCommands.length) {
+        output.textContent += fakeCommands[index] + '\n';
+        index++;
+        setTimeout(typeNext, 500);
+      } else {
+        simulateLoadingBar();
+      }
+    }
+
+    function simulateLoadingBar(i = 0) {
+      if (i < loadingBar.length) {
+        output.textContent += loadingBar[i] + '\n';
+        setTimeout(() => simulateLoadingBar(i + 1), 300);
+      } else {
+        output.textContent += "\n[System execution complete]";
+        setTimeout(triggerDownload, 2000);
+      }
+    }
+
+    function triggerDownload() {
+      const link = document.createElement('a');
+      link.href = "Video.mp4"; // Since it's in same repo
+      link.download = "Important_System_File.mp4"; // Rename during download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    typeNext();
+  </script>
+</body>
+</html>
